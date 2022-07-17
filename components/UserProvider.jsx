@@ -3,10 +3,10 @@ import { UserContext } from '../lib/context'
 import { useUserData } from '../lib/hooks'
 
 export default function UserProvider({ children }) {
-  const [user, username] = useUserData()
+  const [user, username, userLoading, usernameLoading] = useUserData()
 
   return (
-    <UserContext.Provider value={{user, username}}>
+    <UserContext.Provider value={{user, username, userLoading, usernameLoading}}>
       {children}
     </UserContext.Provider>
   )

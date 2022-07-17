@@ -2,12 +2,12 @@ import { useState } from 'react'
 import Loader from '../components/Loader'
 import PostFeed from '../components/PostFeed'
 // import toast from 'react-hot-toast'
-import { getAllPosts, getNextPosts } from '../lib/firebase'
+import { getAllPostsWithQuery, getNextPosts } from '../lib/firebase'
 
 const LIMIT = 1
 
 export async function getServerSideProps(context) {
-  const posts = await getAllPosts({
+  const posts = await getAllPostsWithQuery({
     _where: ['published', '==', true],
     _orderBy: ['createdAt', 'desc'],
     _limit: LIMIT,

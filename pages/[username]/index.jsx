@@ -7,6 +7,8 @@ export async function getServerSideProps(props) {
 
   const userDoc = await getUserWithUsername(username)
 
+  if (!userDoc) return { notFound: true }
+
   let user = null
   let posts = null
 

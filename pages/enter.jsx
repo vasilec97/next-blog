@@ -2,12 +2,14 @@ import { useContext, useState, useEffect } from "react"
 import { googleAuthProvider, auth, firestore } from "../lib/firebase"
 import { useDebounce } from '../lib/hooks'
 import { signInWithPopup } from "firebase/auth"
-import { doc, getDoc, setDoc, writeBatch } from 'firebase/firestore'
+import { doc, getDoc, writeBatch } from 'firebase/firestore'
 import { UserContext } from "../lib/context"
+import Loader from "../components/Loader"
 
 export default function EnterPage() {
-  const { user, username } = useContext(UserContext)
+  const { user, username, userLoading, usernameLoading } = useContext(UserContext)
 
+  if (userLoading || usernameLoading) return <main><Loader show={true} /></main>
   // 1. user signed out <SignInButton />
   // 2. user signed in, but missing username <UsernameForm />
   // 3. user signed in, but has username <SignOutButton />

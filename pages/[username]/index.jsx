@@ -12,14 +12,12 @@ export async function getServerSideProps(props) {
   let user = null
   let posts = null
 
-  if (userDoc) {
-    user = userDoc.data()
-    posts = await getPostsForUser(userDoc, {
-      _where: ['published', '==', true],
-      _orderBy: ['createdAt', 'desc'],
-      _limit: 5
-    })
-  }
+  user = userDoc.data()
+  posts = await getPostsForUser(userDoc, {
+    _where: ['published', '==', true],
+    _orderBy: ['createdAt', 'desc'],
+    _limit: 5
+  })
 
   return {
     props: {user, posts}
